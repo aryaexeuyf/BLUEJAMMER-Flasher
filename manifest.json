@@ -1,10 +1,19 @@
 {
-  "name": "BlueJammer",
-  "version": "1.0.0",
-  "builds": [{
-    "chipFamily": "ESP32",
-    "parts": [
-      { "path": "bluejammer.bin", "offset": 0 }
-    ]
-  }]
+  "name": "Ble1",
+  "builds": [
+    {
+      "chipFamily": "ESP32",
+      "improv": false,
+      "parts": [
+     
+        { "path": "bluejammer.bin", "offset": 0 }
+      ]
+    },
+    {
+      "chipFamily": "ESP8266",
+      "parts": [
+        { "path": "bluejammer.bin", "offset": 0 }
+      ]
+    }
+  ]
 }
