@@ -1,0 +1,10 @@
+{
+  "name": "BlueJammer",
+  "version": "1.0.0",
+  "builds": [{
+    "chipFamily": "ESP32",
+    "parts": [
+      { "path": "bluejammer.bin", "offset": 0 }
+    ]
+  }]
+}
