@@ -1,13 +1,66 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>🔧 BlueJammer Web Flasher</title>
-    <script type="module" src="https://unpkg.com/esp-web-tools@8.0.2/dist/web/install-button.js?module"></script>
-  </head>
-  <body>
-    <h1>🚀 BlueJammer Web Flasher</h1>
-    <p>Tekan tombol <b>BOOT</b> saat flashing</p>
-    <esp-web-install-button manifest="manifest.json"></esp-web-install-button>
-  </body>
-</html>
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BlueJammer WebFlasher</title>
+  <style>
+    body {
+      background-color: #0f0f0f;
+      color: #00ffae;
+      font-family: monospace;
+      text-align: center;
+      padding: 2rem;
+    }
+    button {
+      background-color: #00ffae;
+      color: #0f0f0f;
+      border: none;
+      padding: 1rem 2rem;
+      margin-top: 2rem;
+      font-size: 1.2rem;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+    button:hover {
+      background-color: #00cc8c;
+    }
+    .logo {
+      width: 120px;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 0.7; }
+      50% { transform: scale(1.1); opacity: 1; }
+      100% { transform: scale(1); opacity: 0.7; }
+    }
+  </style>
+</head><body>
+  <img src="skemabt.png" alt="BlueJammer Logo" class="logo" />
+  <h1>🚀 BlueJammer WebFlasher</h1>
+  <p>Flash firmware ke ESP32 langsung dari browser.</p><button id="connect">🔌 Install Firmware</button>
+
+  <script type="module">
+    import { flash } from "https://unpkg.com/esptool-js@0.3.0/dist/web/index.min.js";
+
+    const connectBtn = document.getElementById("connect");
+    connectBtn.addEventListener("click", async () => {
+      try {
+        const port = await navigator.serial.requestPort();
+        await port.open({ baudRate: 115200 });
+
+        const response = await fetch("bluejammer.bin");
+        const firmware = new Uint8Array(await response.arrayBuffer());
+
+        await flash({
+          port,
+          firmware,
+          baudRate: 115200,
+          address: 0x1000
+        });
+
+        alert("✅ Flashing sukses! BlueJammer siap digunakan.");
+        port.close();
+      } catch (err) {
+        console.error(err);
+        alert("❌ Gagal flashing: " + err.message);
+     
