@@ -1,16 +1,21 @@
 {
-  "name": "BlueJammer Firmware",
-  "version": "1.0",
-  "new_install_prompt_erase": true,
-  "builds": [
+  "name": "ESP32 Flasher by APTECH",
+  "short_name": "APTECH Flasher",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#00ff00",
+  "description": "A hacker-style ESP32 firmware flasher built by APTECH.",
+  "icons": [
     {
-      "chipFamily": "ESP32",
-      "parts": [
-        {
-          "path": "bluejammer.bin",
-          "offset": 65536
-        }
-      ]
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
     }
   ]
 }
