@@ -1,13 +1,14 @@
 {
-  "name": "ESP32 BlueJammer",
-  "version": "1.0.0",
+  "name": "BlueJammer Firmware",
+  "version": "1.0",
+  "new_install_prompt_erase": true,
   "builds": [
     {
       "chipFamily": "ESP32",
       "parts": [
         {
           "path": "bluejammer.bin",
-          "offset": 0
+          "offset": 65536
         }
       ]
     }
