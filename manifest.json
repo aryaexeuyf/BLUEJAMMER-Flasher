@@ -1,83 +1,15 @@
-<!DOCTYPE html><html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🔧 BlueJammer WebFlasher</title>
-  <link rel="manifest" href="manifest.json">
-  <style>
-    body {
-      background-color: #0f0f0f;
-      color: #00ffcc;
-      font-family: 'Courier New', Courier, monospace;
-      text-align: center;
-      padding: 20px;
-      animation: fadeIn 1s ease-in-out;
+{
+  "name": "APTECH Web Flasher",
+  "description": "BlueJammer Firmware Flasher for ESP32",
+  "builds": [
+    {
+      "chipFamily": "ESP32",
+      "parts": [
+        {
+          "path": "bluejammer.bin",
+          "offset": 0
+        }
+      ]
     }
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-    .btn {
-      background: #00ffcc;
-      color: #0f0f0f;
-      border: none;
-      padding: 12px 24px;
-      cursor: pointer;
-      font-size: 1rem;
-      margin-top: 20px;
-      transition: transform 0.2s;
-    }
-    .btn:hover {
-      transform: scale(1.05);
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    .terminal-box {
-      background: #000000aa;
-      padding: 10px;
-      border: 1px solid #00ffcc;
-      margin: 20px auto;
-      width: 80%;
-      font-size: 0.9rem;
-      text-align: left;
-      max-height: 200px;
-      overflow-y: auto;
-    }
-  </style>
-</head>
-<body>
-  <h1>💥 BlueJammer Firmware WebFlasher</h1>
-  <p>📡 Pentest Firmware Loader | Made by ARYA25 x APTECH</p>
-  <button class="btn" id="installBtn">🚀 Install Firmware</button>
-  <div class="terminal-box" id="log"></div>  <script type="module">
-    import { connect } from "https://unpkg.com/esp-web-tools@9.0.4/dist/web/install-button.js";
-
-    const installBtn = document.getElementById('installBtn');
-    const logBox = document.getElementById('log');
-
-    function log(msg) {
-      logBox.innerText += `> ${msg}\n`;
-      logBox.scrollTop = logBox.scrollHeight;
-    }
-
-    installBtn.addEventListener('click', async () => {
-      try {
-        log('🔍 Searching for device...');
-        await connect({
-          firmware: [
-            {
-              chipFamily: "ESP32",
-              version: "v1.0.0",
-              path: "bluejammer.bin"
-            }
-          ]
-        });
-        log('✅ Installation complete!');
-      } catch (e) {
-        log(`❌ Error: ${e.message}`);
-      }
-    });
-  </script></body>
-</html>
+  ]
+}
